@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Max Encrypted",
+  "version": "1.0.0",
+  "description": "Шифрование сообщений в веб-версии мессенджера MAX с использованием AES-GCM",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://web.max.ru/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Max Encrypted",
+    "default_icon": {
+      "48": "icons/icon48.png"
+    }
+  },
+  "background": {
+    "scripts": ["src/background.js"],
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.max.ru/*"],
+      "js": ["src/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "encrypted-messenger@example.com",
+      "strict_min_version": "109.0"
+    }
+  },
+  "icons": {
+    "48": "icons/icon48.png"
+  }
+}
